@@ -1,0 +1,24 @@
+/*****************************************************************************/
+/*  Автор         		: Дракончик				                             */
+/*  Приставка     		: Super Nintendo Entertainment System	             */
+/*  Язык	      		: GNU TCC C                                          */
+/*                                                                           */
+/*  Содержимое файла	: Стадия главного экрана	                         */
+/*  Атрибут файла		: EXTERNAL                                           */
+/*  Имя файла     		: menuState.ext                                      */
+/*                                                                           */
+/*****************************************************************************/
+
+extern int StateNumber;
+extern int ChangeState;
+
+
+extern char TitlePic;
+extern char TitlePic_end;
+
+extern char TitlePal;
+extern char TitlePal_end;
+
+extern char TitleMap;
+extern char TitleMap_end;
+
