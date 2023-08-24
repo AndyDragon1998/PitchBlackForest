@@ -22,3 +22,11 @@ extern char TitlePal_end;
 extern char TitleMap;
 extern char TitleMap_end;
 
+extern char NoPadPic;
+extern char NoPadPic_end;
+
+extern char NoPadPal;
+extern char NoPadPal_end;
+
+extern char NoPadMap;
+extern char NoPadMap_end;

@@ -25,42 +25,66 @@ int menuTimer;
 
 void MenuStart(void)
 {
-    // Copy tiles to VRAM
-    bgInitTileSet(0, &TitlePic, &TitlePal, 0, (&TitlePic_end - &TitlePic), (&TitlePal_end - &TitlePal), BG_16COLORS, 0x4000);
+	// Check Multiplayer 5
+    detectMPlay5();
+    if (snes_mplay5)
+    {
+		// Copy tiles to VRAM
+		bgInitTileSet(0, &TitlePic, &TitlePal, 0, (&TitlePic_end - &TitlePic), (&TitlePal_end - &TitlePal), BG_16COLORS, 0x4000);
 
-    // Copy Map to VRAM
-    bgInitMapSet(0, &TitleMap, (&TitleMap_end - &TitleMap), SC_32x32, 0x0000);
-    
-    // Load music
-    spcLoad(MOD_BLOOBEHIND);
+		// Copy Map to VRAM
+		bgInitMapSet(0, &TitleMap, (&TitleMap_end - &TitleMap), SC_32x32, 0x0000);
+		
+		// Load music
+		spcLoad(MOD_BLOOBEHIND);
 
-    // Now Put in 16 color mode and disable other BGs except 1st one
-    setMode(BG_MODE1, 0);
-    setFadeEffect(FADE_IN);
-    bgSetDisable(1);
-    bgSetDisable(2);
-    setScreenOn();
+		// Now Put in 16 color mode and disable other BGs except 1st one
+		setMode(BG_MODE1, 0);
+		setFadeEffect(FADE_IN);
+		bgSetDisable(1);
+		bgSetDisable(2);
+		setScreenOn();
+		
+		 // Play file from the beginning
+		spcPlay(0);
+		menuTimer = 0;
+	}
+	else
+	{
+		// Copy tiles to VRAM
+		bgInitTileSet(0, &NoPadPic, &NoPadPal, 0, (&NoPadPic_end - &NoPadPic), (&NoPadPal_end - &NoPadPal), BG_16COLORS, 0x4000);
+
+		// Copy Map to VRAM
+		bgInitMapSet(0, &NoPadMap, (&NoPadMap_end - &NoPadMap), SC_32x32, 0x0000);
+
+		// Now Put in 16 color mode and disable other BGs except 1st one
+		setMode(BG_MODE1, 0);
+		setFadeEffect(FADE_IN);
+		bgSetDisable(1);
+		bgSetDisable(2);
+		setScreenOn();
+	}
     
-     // Play file from the beginning
-    spcPlay(0);
     
-    menuTimer = 0;
 }
 
 void MenuUpdate(void)
 {
-    // Update music / sfx stream and wait vbl
-	spcProcess();
-	WaitForVBlank();
-	menuTimer++;
-	if(menuTimer == 3300)
-	{
-		setFadeEffect(FADE_OUT);
-	}
-	
-	if(menuTimer == 3305)
-	{
-		ChangeState = 0;
+    if (snes_mplay5)
+    {
+		// Update music / sfx stream and wait vbl
+		spcProcess();
+		WaitForVBlank();
+		menuTimer++;
+		if(menuTimer == 3300)
+		{
+			setFadeEffect(FADE_OUT);
+		}
+		
+		if(menuTimer == 3305)
+		{
+			ChangeState = 0;
+		}
 	}
 	
 }

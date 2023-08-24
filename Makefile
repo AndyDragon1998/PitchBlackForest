@@ -24,6 +24,5 @@ clean: cleanBuildRes cleanRom cleanGfx cleanAudio
 	
 #---------------------------------------------------------------------------------
 
-
-bitmaps : Graphics/Images/pvsneslib.pic Graphics/Images/Title.pic Graphics/Images/SNO.pic
+bitmaps : Graphics/Images/pvsneslib.pic Graphics/Images/Title.pic Graphics/Images/SNO.pic Graphics/Images/NoPad.pic
 #Background.pic Ship.pic
